@@ -142,3 +142,5 @@ template_users = env.get_template("users.html")
 template_currencies = env.get_template("currencies.html")
 Интеграция get_currencies
 ```
+6. Примеры работы приложения:
+   ![Главная](C:\Users\yanav\Downloads\screens\screen1.png)
