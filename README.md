@@ -143,4 +143,4 @@ template_currencies = env.get_template("currencies.html")
 Интеграция get_currencies
 ```
 6. Примеры работы приложения:
-   ![Главная](screens\screen1.png)
+   ![Главная](screens/screen1.png)
