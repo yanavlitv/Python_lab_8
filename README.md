@@ -144,3 +144,6 @@ template_currencies = env.get_template("currencies.html")
 ```
 6. Примеры работы приложения:
    ![Главная](screens/screen1.png)
+   ![Пользователи](screens/screen2.png)
+   ![Валюты](screens/screen3.png)
+   ![Пользователь](screens/screen4.png)
