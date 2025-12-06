@@ -117,7 +117,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 'currencies': [uc.currency.char_code for uc in subs if uc.currency]
             })
 
-        #template = env.get_template("users.html")
         result = template_users.render(
             myapp=app_instance.name,
             users=users_list,
@@ -131,7 +130,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(result.encode("utf-8"))
 
     def show_user(self, params=None):
-        """Информация о пользователе (/user?id=...)"""
+        """Информация о пользователе"""
         user_id = params.get('id', [''])[0] if params else ''
 
         if user_id:
@@ -146,31 +145,18 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         """Список валют"""
         search = params.get('search', [''])[0] if params else ''
 
-        # Фильтрация
-        if search:
-            filtered = []
-            for currency in currencies:
-                if (search.lower() in currency.name.lower() or
-                        search.lower() in currency.char_code.lower()):
-                    filtered.append(currency)
-        else:
-            filtered = currencies
-
-        # Подготавливаем данные
         currencies_list = []
-        for currency in filtered:
+        for currency in currencies:
             users_count = len([uc for uc in user_currencies if uc.currency_id == currency.id])
             currencies_list.append({
                 'currency': currency,
                 'users_count': users_count
             })
 
-        #template = env.get_template("currencies.html")
         result = template_currencies.render(
             myapp=app_instance.name,
             currencies=currencies_list,
-            total=len(filtered),
-            search_query=search
+            total=len(currencies)
         )
 
         self.send_response(200)
